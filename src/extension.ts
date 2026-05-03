@@ -93,7 +93,7 @@ function registerTasksStatusBar(context: vscode.ExtensionContext): void {
   const item = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 90);
   item.command = 'docs-tasks.openTasksMenu';
   item.text = '$(symbol-class) Docs Tasks';
-  item.tooltip = 'Таблица или канбан в центральной области (как Git Graph)';
+  item.tooltip = 'Таблица или канбан';
   item.show();
   context.subscriptions.push(item);
 }

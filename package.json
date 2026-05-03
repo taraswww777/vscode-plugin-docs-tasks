@@ -2,6 +2,7 @@
   "name": "docs-tasks",
   "displayName": "Docs Tasks",
   "description": "Таблица, канбан и редактор YAML frontmatter для docs/tasks/*.md (протокол задач в markdown).",
+  "icon": "resources/icon.png",
   "version": "0.1.0",
   "publisher": "taraswww777",
   "repository": {
