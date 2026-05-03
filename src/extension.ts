@@ -100,7 +100,7 @@ function registerTasksStatusBar(context: vscode.ExtensionContext): void {
 
 export function activate(context: vscode.ExtensionContext): void {
   const index = new TaskIndex();
-  index.startWatch(context);
+  index.startWatch();
   context.subscriptions.push(index);
 
   registerTasksStatusBar(context);

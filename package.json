@@ -74,6 +74,18 @@
           "group": "docs_tasks@9"
         }
       ]
+    },
+    "configuration": {
+      "title": "Docs Tasks",
+      "properties": {
+        "docs-tasks.tasksFolder": {
+          "type": "string",
+          "default": "docs/tasks",
+          "scope": "resource",
+          "description": "Путь к каталогу с файлами TASK-*.md относительно корня каждого корня рабочего пространства (позиционные сегменты **/ задаются автоматически).",
+          "markdownDescription": "Путь к каталогу с файлами `TASK-*.md` относительно корня каждого корня рабочего пространства.\n\nПоиск и watcher используют шаблон `**/<этот-путь>/...` под каждым корнем."
+        }
+      }
     }
   },
   "scripts": {
