@@ -1,0 +1,17 @@
+---
+description: Единое правило ведения задач через docs/tasks и GitHub Issues
+alwaysApply: true
+---
+
+# Протокол задач в docs/tasks
+
+Для задач используй:
+
+- `docs/tasks/TASK-<N>.md` (имя вида `TASK-1.md`, без текстовых суффиксов) и/или GitHub Issues;
+- двустороннюю связь `task md` ↔ `issue`;
+- полный URL issue (`https://github.com/<owner>/<repo>/issues/<N>`), не short-id;
+- без обязательного `docs/tasks/tasks-manifest.json`.
+
+Для `docs/tasks/**` используй skill:
+
+- `.cursor/skills/task-management-protocol/SKILL.md`

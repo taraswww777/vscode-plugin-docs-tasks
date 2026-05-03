@@ -1,0 +1,47 @@
+---
+description: Стандарт frontmatter для задач в docs/tasks
+globs: docs/tasks/**/*.md
+alwaysApply: false
+---
+
+# Frontmatter для docs/tasks
+
+## Имена файлов
+
+- Один файл — одна задача: `docs/tasks/TASK-<N>.md`.
+- Расшифровку и тему держи в поле frontmatter `title`, не дублируй их в имени файла — суффиксы вроде `TASK-3-auth-flow.md` не используй.
+
+Минимальный набор полей:
+
+- `id: TASK-<N>`
+- `title: <краткое название>`
+- `status: backlog|in-progress|done|cancelled`
+- `created: YYYY-MM-DD`
+- `updated: YYYY-MM-DD`
+
+Рекомендуемый расширенный набор:
+
+- `type: task`
+- `source.issue: https://github.com/<owner>/<repo>/issues/<N>` (опционально, но обязательно при связке с issue)
+- `tags: [task, fe|be, ...]`
+
+Эталон:
+
+```yaml
+id: TASK-6
+title: Краткое название
+status: backlog
+created: 2026-04-21
+updated: 2026-04-21
+type: task
+source:
+  issue: https://github.com/owner/repo/issues/6
+tags: [task, fe]
+```
+
+## Формат для Obsidian
+
+- Используй YAML frontmatter строго в начале файла между `---` и `---`.
+- Держи поля плоскими или с короткой вложенностью (как `source.issue`), без сложных структур.
+- `tags` задавай как YAML-список или короткий inline-список.
+- Не добавляй комментарии и нестандартные типы в frontmatter.

@@ -1,0 +1,102 @@
+{
+  "name": "docs-tasks",
+  "displayName": "Docs Tasks",
+  "description": "Таблица, канбан и редактор YAML frontmatter для docs/tasks/*.md (протокол задач в markdown).",
+  "version": "0.1.0",
+  "publisher": "taraswww777",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/taraswww777/vscode-plugin-docs-tasks.git"
+  },
+  "bugs": {
+    "url": "https://github.com/taraswww777/vscode-plugin-docs-tasks/issues"
+  },
+  "homepage": "https://github.com/taraswww777/vscode-plugin-docs-tasks#readme",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished",
+    "onCommand:docs-tasks.openTasksMenu",
+    "onCommand:docs-tasks.refreshIndex",
+    "onCommand:docs-tasks.openTablePanel",
+    "onCommand:docs-tasks.openKanbanPanel"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "docs-tasks.openTasksMenu",
+        "title": "Docs Tasks: Открыть (таблица или канбан)",
+        "icon": "$(checklist)"
+      },
+      {
+        "command": "docs-tasks.openTablePanel",
+        "title": "Docs Tasks: Таблица (центральная область)",
+        "icon": "$(list-flat)"
+      },
+      {
+        "command": "docs-tasks.openKanbanPanel",
+        "title": "Docs Tasks: Канбан (центральная область)",
+        "icon": "$(gallery)"
+      },
+      {
+        "command": "docs-tasks.refreshIndex",
+        "title": "Docs Tasks: Обновить индекс",
+        "icon": "$(refresh)"
+      }
+    ],
+    "menus": {
+      "explorer/title": [
+        {
+          "command": "docs-tasks.openTasksMenu",
+          "group": "navigation@99"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "docs-tasks.openTasksMenu",
+          "group": "docs_tasks@1"
+        },
+        {
+          "command": "docs-tasks.openTablePanel",
+          "group": "docs_tasks@2"
+        },
+        {
+          "command": "docs-tasks.openKanbanPanel",
+          "group": "docs_tasks@3"
+        },
+        {
+          "command": "docs-tasks.refreshIndex",
+          "group": "docs_tasks@9"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "clean:out": "node -e \"try{require('fs').rmSync('out',{recursive:true,force:true})}catch(_){}\"",
+    "recompile": "npm run clean:out && npm run compile",
+    "watch": "tsc -watch -p ./",
+    "package": "vsce package",
+    "vsix": "npm run recompile && vsce package"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.30",
+    "@types/vscode": "^1.85.0",
+    "@vscode/vsce": "^3.7.2",
+    "typescript": "~5.4.5"
+  },
+  "dependencies": {
+    "gray-matter": "^4.0.3"
+  },
+  "license": "MIT",
+  "extensionKind": [
+    "ui",
+    "workspace"
+  ]
+}
