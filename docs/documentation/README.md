@@ -41,6 +41,12 @@ npm run vsix
 
 Файл `docs-tasks-*.vsix` появится в корне. Установка: **Extensions → ⋮ → Install from VSIX…**.
 
+### Публикация в Visual Studio Marketplace
+
+Релиз в Marketplace выполняется **вручную**: на странице управления издателем загружается собранный `.vsix` (требуется вход в учётную запись Microsoft / Azure DevOps):
+
+- [Управление расширениями издателя `taraswww777`](https://marketplace.visualstudio.com/manage/publishers/taraswww777)
+
 ## Content Security Policy
 
 Webview задаёт ограниченный CSP; сырой markdown в DOM не вставляется.
