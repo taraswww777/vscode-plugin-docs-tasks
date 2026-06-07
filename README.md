@@ -2,11 +2,11 @@
 
 Расширение для **Visual Studio Code** и **Cursor**: таблица и канбан по файлам задач `TASK-*.md`, сохранённые виды с фильтрами, редактор YAML **frontmatter** между `---` без изменения основного текста задачи.
 
-**Издатель:** `taraswww777` · **Репозиторий:** [taraswww777/vscode-plugin-docs-tasks](https://github.com/taraswww777/vscode-plugin-docs-tasks)
+**Издатель:** `taraswww777` · **Marketplace:** [Docs Tasks](https://marketplace.visualstudio.com/items?itemName=taraswww777.docs-tasks) · **Репозиторий:** [taraswww777/vscode-plugin-docs-tasks](https://github.com/taraswww777/vscode-plugin-docs-tasks)
 
 ## Установка
 
-1. Откройте панель расширений и найдите **Docs Tasks** (после публикации в Marketplace).
+1. [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=taraswww777.docs-tasks) — **Install** или поиск **Docs Tasks** в панели расширений.
 2. Либо установите файл **`.vsix`**: команда палитры **Extensions: Install from VSIX…** (файл можно взять из [Releases](https://github.com/taraswww777/vscode-plugin-docs-tasks/releases), если они опубликованы).
 
 ## Что нужно в проекте
