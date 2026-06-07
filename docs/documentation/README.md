@@ -43,17 +43,21 @@ npm run vsix
 
 ### Публикация в Visual Studio Marketplace
 
-Автопубликация при push в **`master`** (workflow [`.github/workflows/publish-marketplace.yml`](../../.github/workflows/publish-marketplace.yml)):
+Страница расширения: [Docs Tasks на Marketplace](https://marketplace.visualstudio.com/items?itemName=taraswww777.docs-tasks).
 
-1. **minor**-версия в `package.json` поднимается автоматически (`0.1.0` → `0.2.0` → `0.3.0`, …).
-2. Выполняется `vsce publish`.
-3. Обновлённые `package.json` и `package-lock.json` коммитятся в `master` с меткой **`[skip ci]`**, чтобы не запускать workflow повторно.
+Автопубликация при каждом push в **`master`** (в том числе после merge PR) — workflow [`.github/workflows/publish-marketplace.yml`](../../.github/workflows/publish-marketplace.yml). Ручной запуск: **Actions → Publish to VS Code Marketplace → Run workflow**.
 
-Настройка один раз:
+Последовательность:
 
-1. В [Azure DevOps](https://dev.azure.com/) создайте **Personal Access Token** с областью **Marketplace → Manage**.
-2. В GitHub: **Settings → Secrets and variables → Actions** → секрет **`VSCE_PAT`** (значение PAT).
-3. **Settings → Actions → General → Workflow permissions** → **Read and write permissions** (нужно для push коммита с версией).
+1. **minor**-версия в `package.json` поднимается автоматически по шаблону **`0.x.0`** (`0.1.0` → `0.2.0` → `0.3.0`, …).
+2. Сборка и `vsce publish` в [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=taraswww777.docs-tasks).
+3. Обновлённые `package.json` и `package-lock.json` пушатся в `master` с меткой **`[skip ci]`** (повторный прогон не стартует); создаётся git-тег **`v0.x.0`**.
+
+Настройка один раз в GitHub-репозитории:
+
+1. [Azure DevOps](https://dev.azure.com/) → **User settings → Personal access tokens** → **New Token** → область **Custom defined** → **Marketplace → Manage** (достаточно для `vsce publish`).
+2. GitHub → **Settings → Secrets and variables → Actions** → **New repository secret** → имя **`VSCE_PAT`**, значение — PAT из шага 1.
+3. GitHub → **Settings → Actions → General → Workflow permissions** → **Read and write permissions** (нужно для push коммита с версией и тега).
 
 Ручная загрузка `.vsix` по-прежнему возможна на странице издателя:
 
