@@ -1,5 +1,6 @@
 import matter from 'gray-matter';
 import * as vscode from 'vscode';
+import { serializeTaskDateTime } from './formatTaskDateTime';
 import { normalizeFrontmatter } from './normalizeTask';
 import type { NormalizedTask, TaskFrontmatter } from './types';
 
@@ -146,8 +147,8 @@ export class TaskIndex implements vscode.Disposable {
         id: data.id != null ? String(data.id) : undefined,
         title: data.title != null ? String(data.title) : undefined,
         status: data.status != null ? String(data.status) : undefined,
-        created: data.created != null ? String(data.created) : undefined,
-        updated: data.updated != null ? String(data.updated) : undefined,
+        created: serializeTaskDateTime(data.created),
+        updated: serializeTaskDateTime(data.updated),
         type: data.type != null ? String(data.type) : undefined,
         tags: data.tags,
         source: data.source,

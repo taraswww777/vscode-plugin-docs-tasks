@@ -1,4 +1,5 @@
 import * as vscode from 'vscode';
+import { formatTaskDateTimeDisplay, taskDateTimeSortKey } from './formatTaskDateTime';
 import { openMetadataEditor } from './metadataPanel';
 import { loadPresets, savePresets } from './presetStorage';
 import type { TableViewPreset } from './types';
@@ -17,7 +18,14 @@ export function wireTableWebview(options: {
   let activeIndex = 0;
 
   const pushTasks = () => {
-    void webview.postMessage({ type: 'tasks', tasks: index.getSnapshot() });
+    const tasks = index.getSnapshot().map((t) => ({
+      ...t,
+      created: formatTaskDateTimeDisplay(t.created),
+      updated: formatTaskDateTimeDisplay(t.updated),
+      _createdSort: taskDateTimeSortKey(t.created),
+      _updatedSort: taskDateTimeSortKey(t.updated),
+    }));
+    void webview.postMessage({ type: 'tasks', tasks });
   };
 
   const pushPresets = () => {
