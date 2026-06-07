@@ -39,8 +39,8 @@ export function metadataWebviewHtml(webview: vscode.Webview): string {
       <option>cancelled</option>
     </select>
   </label>
-  <label>created (YYYY-MM-DD) <input id="created" /></label>
-  <label>updated (YYYY-MM-DD) <input id="updated" /></label>
+  <label>created (дд.мм.гггг чч:мм) <input id="created" placeholder="07.06.2026 15:30" /></label>
+  <label>updated (дд.мм.гггг чч:мм) <input id="updated" placeholder="07.06.2026 15:30" /></label>
   <label>type <input id="type" /></label>
   <label>tags (через запятую) <textarea id="tags"></textarea></label>
   <label>source.issue (URL) <input id="issue" /></label>

@@ -1,6 +1,7 @@
 import matter from 'gray-matter';
 import * as vscode from 'vscode';
-import { isIsoDateYYYYMMDD, isValidStatus } from './validateFrontmatter';
+import { formatTaskDateTimeDisplay, normalizeTaskDateTimeField, serializeTaskDateTime } from './formatTaskDateTime';
+import { isValidStatus } from './validateFrontmatter';
 import type { TaskFrontmatter } from './types';
 
 export interface FrontmatterDraft extends TaskFrontmatter {
@@ -41,11 +42,13 @@ export function validateDraft(d: FrontmatterDraft): ValidateDraftResult {
   if (!isValidStatus(st)) {
     errors.push('status должно быть: backlog | in-progress | done | cancelled');
   }
-  if (!isIsoDateYYYYMMDD(d.created?.trim())) {
-    errors.push('created должно быть YYYY-MM-DD');
+  const createdNorm = normalizeTaskDateTimeField(d.created);
+  if (!createdNorm) {
+    errors.push('created должно быть дд.мм.гггг чч:мм (или YYYY-MM-DD)');
   }
-  if (!isIsoDateYYYYMMDD(d.updated?.trim())) {
-    errors.push('updated должно быть YYYY-MM-DD');
+  const updatedNorm = normalizeTaskDateTimeField(d.updated);
+  if (!updatedNorm) {
+    errors.push('updated должно быть дд.мм.гггг чч:мм (или YYYY-MM-DD)');
   }
   if (d.type != null && String(d.type).includes('\n')) {
     errors.push('type не может быть многострочным');
@@ -74,8 +77,8 @@ export function validateDraft(d: FrontmatterDraft): ValidateDraftResult {
     id: d.id!.trim(),
     title: d.title!.trim(),
     status: st,
-    created: d.created!.trim(),
-    updated: d.updated!.trim(),
+    created: createdNorm!,
+    updated: updatedNorm!,
     type: d.type?.trim() || undefined,
     tags: tagsOut,
     source: sourceOut,
@@ -123,6 +126,8 @@ export function draftFromParsed(fmRec: Record<string, unknown>): FrontmatterDraf
   const fm = fmRec as unknown as TaskFrontmatter;
   const draft: FrontmatterDraft = {
     ...fm,
+    created: formatTaskDateTimeDisplay(serializeTaskDateTime(fmRec.created) ?? fm.created),
+    updated: formatTaskDateTimeDisplay(serializeTaskDateTime(fmRec.updated) ?? fm.updated),
     tagsText: stringifyTagsForDraft(fm.tags),
   };
   const src = fm.source as { issue?: string } | undefined;
