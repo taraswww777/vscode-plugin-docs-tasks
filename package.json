@@ -1,7 +1,7 @@
 {
   "name": "docs-tasks",
   "displayName": "Docs Tasks",
-  "description": "Таблица, канбан и редактор YAML frontmatter для docs/tasks/*.md (протокол задач в markdown).",
+  "description": "Таблица и редактор YAML frontmatter для docs/tasks/*.md (протокол задач в markdown).",
   "icon": "resources/icon.png",
   "version": "0.1.0",
   "publisher": "taraswww777",
@@ -21,28 +21,16 @@
   ],
   "activationEvents": [
     "onStartupFinished",
-    "onCommand:docs-tasks.openTasksMenu",
     "onCommand:docs-tasks.refreshIndex",
-    "onCommand:docs-tasks.openTablePanel",
-    "onCommand:docs-tasks.openKanbanPanel"
+    "onCommand:docs-tasks.openTablePanel"
   ],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "docs-tasks.openTasksMenu",
-        "title": "Docs Tasks: Открыть (таблица или канбан)",
-        "icon": "$(checklist)"
-      },
-      {
         "command": "docs-tasks.openTablePanel",
-        "title": "Docs Tasks: Таблица (центральная область)",
+        "title": "Docs Tasks: Таблица",
         "icon": "$(list-flat)"
-      },
-      {
-        "command": "docs-tasks.openKanbanPanel",
-        "title": "Docs Tasks: Канбан (центральная область)",
-        "icon": "$(gallery)"
       },
       {
         "command": "docs-tasks.refreshIndex",
@@ -53,22 +41,14 @@
     "menus": {
       "explorer/title": [
         {
-          "command": "docs-tasks.openTasksMenu",
+          "command": "docs-tasks.openTablePanel",
           "group": "navigation@99"
         }
       ],
       "commandPalette": [
         {
-          "command": "docs-tasks.openTasksMenu",
-          "group": "docs_tasks@1"
-        },
-        {
           "command": "docs-tasks.openTablePanel",
-          "group": "docs_tasks@2"
-        },
-        {
-          "command": "docs-tasks.openKanbanPanel",
-          "group": "docs_tasks@3"
+          "group": "docs_tasks@1"
         },
         {
           "command": "docs-tasks.refreshIndex",

@@ -41,6 +41,24 @@ npm run vsix
 
 Файл `docs-tasks-*.vsix` появится в корне. Установка: **Extensions → ⋮ → Install from VSIX…**.
 
+### Публикация в Visual Studio Marketplace
+
+Автопубликация при push в **`master`** (workflow [`.github/workflows/publish-marketplace.yml`](../../.github/workflows/publish-marketplace.yml)):
+
+1. **minor**-версия в `package.json` поднимается автоматически (`0.1.0` → `0.2.0` → `0.3.0`, …).
+2. Выполняется `vsce publish`.
+3. Обновлённые `package.json` и `package-lock.json` коммитятся в `master` с меткой **`[skip ci]`**, чтобы не запускать workflow повторно.
+
+Настройка один раз:
+
+1. В [Azure DevOps](https://dev.azure.com/) создайте **Personal Access Token** с областью **Marketplace → Manage**.
+2. В GitHub: **Settings → Secrets and variables → Actions** → секрет **`VSCE_PAT`** (значение PAT).
+3. **Settings → Actions → General → Workflow permissions** → **Read and write permissions** (нужно для push коммита с версией).
+
+Ручная загрузка `.vsix` по-прежнему возможна на странице издателя:
+
+- [Управление расширениями издателя `taraswww777`](https://marketplace.visualstudio.com/manage/publishers/taraswww777)
+
 ## Content Security Policy
 
 Webview задаёт ограниченный CSP; сырой markdown в DOM не вставляется.

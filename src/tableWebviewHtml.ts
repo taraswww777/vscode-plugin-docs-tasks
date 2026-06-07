@@ -219,6 +219,13 @@ export function tableWebviewHtml(webview: vscode.Webview): string {
     }
 
     function cmp(a, b, col, dir) {
+      if (col === 'created' || col === 'updated') {
+        const ka = col === 'created' ? (a._createdSort || 0) : (a._updatedSort || 0);
+        const kb = col === 'created' ? (b._createdSort || 0) : (b._updatedSort || 0);
+        if (ka < kb) return dir === 'asc' ? -1 : 1;
+        if (ka > kb) return dir === 'asc' ? 1 : -1;
+        return 0;
+      }
       const va = col === 'tags' ? (a.tags || []).join(',') : a[col];
       const vb = col === 'tags' ? (b.tags || []).join(',') : b[col];
       const sa = va == null ? '' : String(va);
