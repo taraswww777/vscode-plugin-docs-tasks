@@ -28,6 +28,11 @@
   "contributes": {
     "commands": [
       {
+        "command": "docs-tasks.commitWithDate",
+        "title": "Commit with Date",
+        "icon": "$(git-commit)"
+      },
+      {
         "command": "docs-tasks.openTablePanel",
         "title": "Docs Tasks: Таблица",
         "icon": "$(list-flat)"
@@ -39,6 +44,13 @@
       }
     ],
     "menus": {
+      "scm/title": [
+        {
+          "command": "docs-tasks.commitWithDate",
+          "group": "navigation",
+          "when": "scmProvider == git"
+        }
+      ],
       "explorer/title": [
         {
           "command": "docs-tasks.openTablePanel",
