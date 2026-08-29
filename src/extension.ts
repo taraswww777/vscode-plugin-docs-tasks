@@ -73,7 +73,8 @@ export function activate(context: vscode.ExtensionContext): void {
     }),
   );
 
-  vscode.commands.registerCommand('docs-tasks.commitWithDate', async () => {
+  context.subscriptions.push(
+    vscode.commands.registerCommand('docs-tasks.commitWithDate', async () => {
     const workDir = vscode.workspace.rootPath;
     if (!workDir) {
       vscode.window.showWarningMessage('Нет открытого workspace.');
@@ -152,7 +153,8 @@ export function activate(context: vscode.ExtensionContext): void {
       const err = e instanceof Error ? e.message : String(e);
       vscode.window.showErrorMessage(`Ошибка при коммите: ${err}`);
     }
-  })
+  }),
+  );
 }
 
 export function deactivate(): void {
