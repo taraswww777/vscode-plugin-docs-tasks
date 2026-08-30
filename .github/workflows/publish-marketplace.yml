@@ -34,7 +34,7 @@ jobs:
           VSCE_PAT: ${{ secrets.VSCE_PAT }}
         run: |
           if [ -z "$VSCE_PAT" ]; then
-            echo "::error::Секрет VSCE_PAT не задан. GitHub → Settings → Secrets and variables → Actions → New repository secret → имя VSCE_PAT, значение — PAT из Azure DevOps (Marketplace → Manage). Инструкция: docs/documentation/README.md#публикация-в-visual-studio-marketplace"
+            echo "::error::Секрет VSCE_PAT не задан. GitHub → Settings → Secrets and variables → Actions → New repository secret → имя VSCE_PAT, значение — PAT из Azure DevOps (Marketplace → Manage). Инструкция: docs/documentation/publishing.md"
             exit 1
           fi
 
