@@ -6,8 +6,8 @@
 
 ## Установка
 
-1. [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=taraswww777.docs-tasks) — **Install** или поиск **Docs Tasks** в панели расширений.
-2. Либо файл **`.vsix`**: палитра **Extensions: Install from VSIX…** (из [Releases](https://github.com/taraswww777/vscode-plugin-docs-tasks/releases), если опубликованы).
+1. [GitHub Releases](https://github.com/taraswww777/vscode-plugin-docs-tasks/releases) — скачайте **`docs-tasks-*.vsix`**, затем палитра **Extensions: Install from VSIX…**.
+2. Либо [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=taraswww777.docs-tasks) — **Install** (если расширение опубликовано там вручную).
 
 ## Что нужно в проекте
 

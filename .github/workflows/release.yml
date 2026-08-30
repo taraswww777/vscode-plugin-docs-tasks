@@ -1,4 +1,4 @@
-name: Publish to VS Code Marketplace
+name: Release
 
 on:
   push:
@@ -7,11 +7,11 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: publish-marketplace-master
+  group: release-master
   cancel-in-progress: false
 
 jobs:
-  publish:
+  release:
     if: >-
       github.event_name == 'workflow_dispatch' ||
       !contains(github.event.head_commit.message, '[skip ci]')
@@ -29,41 +29,37 @@ jobs:
           node-version: '20'
           cache: npm
 
-      - name: Проверка секрета VSCE_PAT
-        env:
-          VSCE_PAT: ${{ secrets.VSCE_PAT }}
-        run: |
-          if [ -z "$VSCE_PAT" ]; then
-            echo "::error::Секрет VSCE_PAT не задан. GitHub → Settings → Secrets and variables → Actions → New repository secret → имя VSCE_PAT, значение — PAT из Azure DevOps (Marketplace → Manage). Инструкция: docs/documentation/publishing.md"
-            exit 1
-          fi
-
       - name: Установка зависимостей
         run: npm ci
 
-      - name: Поднять minor-версию (шаблон 0.x.0)
+      - name: Поднять patch-версию
         id: bump
         run: |
-          npm version minor --no-git-tag-version
+          npm version patch --no-git-tag-version
           echo "version=$(node -p "require('./package.json').version")" >> "$GITHUB_OUTPUT"
 
-      - name: Сборка
-        run: npm run compile
+      - name: Сборка и .vsix
+        run: |
+          npm run compile
+          npx vsce package
 
-      - name: Публикация в Marketplace
-        run: npx @vscode/vsce publish -p "$VSCE_PAT"
-        env:
-          VSCE_PAT: ${{ secrets.VSCE_PAT }}
-
-      - name: Зафиксировать версию и тег в репозитории
+      - name: Зафиксировать версию в репозитории
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add package.json package-lock.json
           git commit -m "chore: release v${VERSION} [skip ci]"
-          git tag -a "v${VERSION}" -m "Release v${VERSION}"
           git pull --rebase origin master
           git push origin master
-          git push origin "v${VERSION}"
         env:
+          VERSION: ${{ steps.bump.outputs.version }}
+
+      - name: GitHub Release
+        run: |
+          gh release create "v${VERSION}" \
+            --title "Docs Tasks v${VERSION}" \
+            --generate-notes \
+            "docs-tasks-${VERSION}.vsix"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VERSION: ${{ steps.bump.outputs.version }}

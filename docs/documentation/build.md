@@ -33,4 +33,4 @@ npm run version:major   # 0.1.0 → 1.0.0
 
 Скрипты используют `--no-git-tag-version` — без автокоммита и тега npm.
 
-[← Оглавление](./README.md) · [Публикация в Marketplace →](./publishing.md)
+[← Оглавление](./README.md) · [Релизы →](./releases.md)

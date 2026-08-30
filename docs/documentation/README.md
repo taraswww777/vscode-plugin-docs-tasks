@@ -10,7 +10,7 @@
 | [Команды](./commands.md) | `openTablePanel`, `refreshIndex`, `commitWithDate` |
 | [Справочники](./references.md) | Codicons, API VS Code, webview, тема, Git, `vsce` |
 | [Сборка и отладка](./build.md) | compile, watch, `.vsix`, версии |
-| [Публикация](./publishing.md) | Marketplace, CI, `VSCE_PAT` |
+| [Релизы](./releases.md) | GitHub Releases, CI, `.vsix` |
 | [Репозиторий](./repository.md) | `docs/tasks`, `.cursor`, протокол задач |
 
 ## Совместимость

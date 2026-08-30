@@ -55,9 +55,9 @@ Webview наследует тему редактора; хардкод цвет�
 
 | Тема | Документация | Зачем в Docs Tasks |
 |------|--------------|-------------------|
-| Публикация | [Publishing Extensions](https://code.visualstudio.com/api/working-with-extensions/publishing-extension) | Marketplace, PAT |
+| Публикация | [Publishing Extensions](https://code.visualstudio.com/api/working-with-extensions/publishing-extension) | Ручная загрузка в Marketplace |
 | `vsce` | [@vscode/vsce](https://github.com/microsoft/vscode-vsce) | `npm run vsix`, CI |
 
-Процесс в репозитории — [Публикация](./publishing.md).
+Процесс в репозитории — [Релизы](./releases.md).
 
 [← Оглавление](./README.md)
