@@ -3,7 +3,7 @@
   "displayName": "Docs Tasks",
   "description": "Таблица и редактор YAML frontmatter для docs/tasks/*.md (протокол задач в markdown).",
   "icon": "resources/icon.png",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "scripts": {
     "version:patch": "npm version patch --no-git-tag-version",
     "version:minor": "npm version minor --no-git-tag-version",
